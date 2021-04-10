@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Keyboard,
   ScrollView,
+  SafeAreaView,
 } from "react-native";
 
 import Task from "./components/Task";
@@ -31,7 +32,14 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar
+        hidden={false}
+        backgroundColor="#E8EAED"
+        barStyle="light-content"
+        translucent
+      />
+
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -72,7 +80,7 @@ export default function App() {
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -82,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E8EAED",
   },
   tasksWrapper: {
-    paddingTop: 80,
+    paddingTop: 32,
     paddingHorizontal: 20,
   },
   sectionTitle: {
@@ -94,7 +102,7 @@ const styles = StyleSheet.create({
   },
   writeTaskWrapper: {
     position: "absolute",
-    bottom: 60,
+    bottom: 48,
     width: "100%",
     flexDirection: "row",
     justifyContent: "center",
