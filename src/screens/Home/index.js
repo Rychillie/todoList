@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Appearance,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  Keyboard,
-  ScrollView,
-  SafeAreaView,
-} from "react-native";
+import { TouchableOpacity, Keyboard, ScrollView } from "react-native";
 
 import Task from "../../components/Task";
+
+import * as S from "./styles";
 
 export default function Home() {
   const [task, setTask] = useState();
@@ -32,7 +23,7 @@ export default function Home() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <S.Container>
       <StatusBar
         hidden={false}
         backgroundColor="#E8EAED"
@@ -46,9 +37,9 @@ export default function Home() {
         }}
         keyboardShouldPersistTaps="handled"
       >
-        <View style={styles.tasksWrapper}>
-          <Text style={styles.sectionTitle}>Today's tasks</Text>
-          <View style={styles.items}>
+        <S.TasksWrapper>
+          <S.SectionTitle>Today's tasks</S.SectionTitle>
+          <S.Items>
             {taskItems.map((item, index) => {
               return (
                 <TouchableOpacity
@@ -59,75 +50,25 @@ export default function Home() {
                 </TouchableOpacity>
               );
             })}
-          </View>
-        </View>
+          </S.Items>
+        </S.TasksWrapper>
       </ScrollView>
 
       {/* Write a task */}
-      <KeyboardAvoidingView
+      <S.WriteTaskWrapper
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.writeTaskWrapper}
       >
-        <TextInput
-          style={styles.input}
+        <S.Input
           placeholder={"Write a task"}
           value={task}
           onChangeText={(text) => setTask(text)}
         />
         <TouchableOpacity onPress={() => handleAddTask()}>
-          <View style={styles.addWrapper}>
-            <Text style={styles.addText}>+</Text>
-          </View>
+          <S.AddWrapper>
+            <S.AddText>+</S.AddText>
+          </S.AddWrapper>
         </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+      </S.WriteTaskWrapper>
+    </S.Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#E8EAED",
-  },
-  tasksWrapper: {
-    paddingTop: 32,
-    paddingHorizontal: 20,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  items: {
-    marginTop: 30,
-  },
-  writeTaskWrapper: {
-    position: "absolute",
-    bottom: 48,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  input: {
-    width: 48,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    backgroundColor: "#FFF",
-    borderRadius: 60,
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
-    width: 250,
-  },
-  addWrapper: {
-    width: 48,
-    height: 48,
-    marginLeft: 8,
-    backgroundColor: "#FFF",
-    borderRadius: 48,
-    justifyContent: "center",
-    alignItems: "center",
-    borderColor: "#C0C0C0",
-    borderWidth: 1,
-  },
-  addText: {},
-});
