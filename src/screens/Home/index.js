@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { TouchableOpacity, Keyboard, ScrollView } from "react-native";
+import {
+  TouchableOpacity,
+  Keyboard,
+  ScrollView,
+  useColorScheme,
+  Appearance,
+} from "react-native";
 
 import Task from "../../components/Task";
 
 import * as S from "./styles";
 
+import { DarkTheme } from "../../components/themes/DarkTheme";
+import { LightTheme } from "../../components/themes/LigthTheme";
+
 export default function Home() {
+  // const colorScheme = Appearance.getColorScheme();
+  const colorScheme = useColorScheme();
+  const isLight = colorScheme === "light";
+
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
 
@@ -23,11 +36,13 @@ export default function Home() {
   };
 
   return (
-    <S.Container>
+    <S.Container theme={isLight}>
       <StatusBar
         hidden={false}
-        backgroundColor="#E8EAED"
-        barStyle="light-content"
+        backgroundColor={
+          isLight ? LightTheme.primaryBackground : DarkTheme.primaryBackground
+        }
+        barStyle={isLight ? "light-content" : "dark-content"}
         translucent
       />
 
@@ -37,9 +52,9 @@ export default function Home() {
         }}
         keyboardShouldPersistTaps="handled"
       >
-        <S.TasksWrapper>
-          <S.SectionTitle>Today's tasks</S.SectionTitle>
-          <S.Items>
+        <S.TasksWrapper theme={isLight}>
+          <S.SectionTitle theme={isLight}>Today's tasks</S.SectionTitle>
+          <S.Items theme={isLight}>
             {taskItems.map((item, index) => {
               return (
                 <TouchableOpacity
@@ -56,16 +71,18 @@ export default function Home() {
 
       {/* Write a task */}
       <S.WriteTaskWrapper
+        theme={isLight}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <S.Input
+          theme={isLight}
           placeholder={"Write a task"}
           value={task}
           onChangeText={(text) => setTask(text)}
         />
         <TouchableOpacity onPress={() => handleAddTask()}>
-          <S.AddWrapper>
-            <S.AddText>+</S.AddText>
+          <S.AddWrapper theme={isLight}>
+            <S.AddText theme={isLight}>+</S.AddText>
           </S.AddWrapper>
         </TouchableOpacity>
       </S.WriteTaskWrapper>
