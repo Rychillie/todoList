@@ -8,10 +8,10 @@ const Task = (props) => {
   const isLight = colorScheme === "light";
 
   return (
-    <S.Item theme={isLight}>
+    <S.Item>
       <S.ItemLeft>
         <S.Square></S.Square>
-        <S.ItemText theme={isLight}>{props.text}</S.ItemText>
+        <S.ItemText>{props.text}</S.ItemText>
       </S.ItemLeft>
       <S.Circular></S.Circular>
     </S.Item>

@@ -12,8 +12,7 @@ import Task from "../../components/Task";
 
 import * as S from "./styles";
 
-import { DarkTheme } from "../../components/themes/DarkTheme";
-import { LightTheme } from "../../components/themes/LigthTheme";
+import themes from "../../components/themes";
 
 export default function Home() {
   // const colorScheme = Appearance.getColorScheme();
@@ -36,12 +35,10 @@ export default function Home() {
   };
 
   return (
-    <S.Container theme={isLight}>
+    <S.Container>
       <StatusBar
         hidden={false}
-        backgroundColor={
-          isLight ? LightTheme.primaryBackground : DarkTheme.primaryBackground
-        }
+        // backgroundColor={(props) => props.theme.primaryBackground}
         barStyle={isLight ? "light-content" : "dark-content"}
         translucent
       />
@@ -52,9 +49,9 @@ export default function Home() {
         }}
         keyboardShouldPersistTaps="handled"
       >
-        <S.TasksWrapper theme={isLight}>
-          <S.SectionTitle theme={isLight}>Today's tasks</S.SectionTitle>
-          <S.Items theme={isLight}>
+        <S.TasksWrapper>
+          <S.SectionTitle>Today's tasks</S.SectionTitle>
+          <S.Items>
             {taskItems.map((item, index) => {
               return (
                 <TouchableOpacity
@@ -71,18 +68,16 @@ export default function Home() {
 
       {/* Write a task */}
       <S.WriteTaskWrapper
-        theme={isLight}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <S.Input
-          theme={isLight}
           placeholder={"Write a task"}
           value={task}
           onChangeText={(text) => setTask(text)}
         />
         <TouchableOpacity onPress={() => handleAddTask()}>
-          <S.AddWrapper theme={isLight}>
-            <S.AddText theme={isLight}>+</S.AddText>
+          <S.AddWrapper>
+            <S.AddText>+</S.AddText>
           </S.AddWrapper>
         </TouchableOpacity>
       </S.WriteTaskWrapper>

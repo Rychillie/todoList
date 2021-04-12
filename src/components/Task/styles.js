@@ -1,13 +1,7 @@
 import styled from "styled-components/native";
 
-import { DarkTheme } from "../../components/themes/DarkTheme";
-import { LightTheme } from "../../components/themes/LigthTheme";
-
 export const Item = styled.View`
-  background-color: ${(props) =>
-    props.theme.isLight
-      ? LightTheme.secondaryBackground
-      : DarkTheme.secondaryBackground};
+  background-color: ${(props) => props.theme.secondaryBackground};
   padding: 15px;
   border-radius: 10px;
   flex-direction: row;
@@ -33,8 +27,7 @@ export const Square = styled.View`
 
 export const ItemText = styled.Text`
   max-width: 80%;
-  color: ${(props) =>
-    props.theme.isLight ? LightTheme.secondaryText : DarkTheme.secondaryText};
+  color: ${(props) => props.theme.secondaryText};
 `;
 
 export const Circular = styled.View`
