@@ -6,13 +6,15 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const TasksWrapper = styled.View`
-  padding-top: 32px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-top: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
 `;
 
 export const SectionTitle = styled.Text`
-  font-size: 24px;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: 1px;
   font-weight: bold;
   color: ${(props) => props.theme.primaryText};
 `;
@@ -24,6 +26,8 @@ export const Items = styled.View`
 export const WriteTaskWrapper = styled.KeyboardAvoidingView`
   position: absolute;
   bottom: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
   width: 100%;
   flex-direction: row;
   justify-content: center;
@@ -31,20 +35,21 @@ export const WriteTaskWrapper = styled.KeyboardAvoidingView`
 `;
 
 export const Input = styled.TextInput`
-  width: 48px;
-  padding: 15px;
-  border-radius: 60px;
+  flex: 1;
+  height: 56px;
+  padding: 16px 24px;
+  border-radius: 18px;
   background-color: ${(props) => props.theme.secondaryBackground};
   width: 250px;
   color: ${(props) => props.theme.primaryText};
 `;
 
 export const AddWrapper = styled.View`
-  width: 48px;
-  height: 48px;
-  margin-left: 8px;
+  width: 60px;
+  height: 56px;
+  margin-left: 24px;
   background-color: ${(props) => props.theme.secondaryBackground};
-  border-radius: 48px;
+  border-radius: 18px;
   justify-content: center;
   align-items: center;
 `;

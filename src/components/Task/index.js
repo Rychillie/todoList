@@ -9,11 +9,8 @@ const Task = (props) => {
 
   return (
     <S.Item>
-      <S.ItemLeft>
-        <S.Square></S.Square>
-        <S.ItemText>{props.text}</S.ItemText>
-      </S.ItemLeft>
-      <S.Circular></S.Circular>
+      <S.Square></S.Square>
+      <S.ItemText>{props.text}</S.ItemText>
     </S.Item>
   );
 };
